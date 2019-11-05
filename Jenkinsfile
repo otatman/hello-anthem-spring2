@@ -10,8 +10,8 @@ def imageTag = "hello-anthem:latest"
 def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, def imageTag) {
     sh """skopeo copy --src-tls-verify=false --src-creds=jenkins:${skopeoToken} \
     --dest-tls-verify=false --dest-creds=jenkins:${skopeoToken} \
-    docker://docker-registry-default.master.ent-ocp1-np1-useast1.aws.internal.das/console/${srcProject}/${imageTag} \
-    docker://master.ent-ocp-np2.aws.internal.das/console/${destProject}/${imageTag}"""
+    docker://docker-registry-default.master.ent-ocp1-np1-useast1.aws.internal.das/${srcProject}/${imageTag} \
+    docker://master.ent-ocp-np2.aws.internal.das/${destProject}/${imageTag}"""
 }
 
 
