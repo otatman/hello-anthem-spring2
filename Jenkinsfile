@@ -10,7 +10,7 @@ pipeline {
   stages {
       stage("Build & Test") {
            steps {
-	       input "Ready to start?"
+	       sh "mvn clean package"
 	   }
       }
    }
