@@ -3,7 +3,7 @@ def devProject = "hello-anthem-jenkins"
 def testProject = "hello-anthm-skpo-testapp"
 
 def skopeoToken
-def imageTag
+def imageTag = "hello-anthem:latest"
 
 def getVersionFromPom() {
     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
@@ -13,11 +13,9 @@ def getVersionFromPom() {
 def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, defimageTag) {
     sh """skopeo copy --src-tls-verify=false --src-creds=jenkins:${skopeoToken} \
     --dest-tls-verify=false --dest-creds=jenkins:${skopeoToken} \
-    docker://docker-registry.default.svc:5000/${srcProject}/${appName}:${imageTag} \
-    docker://docker-registry.default.svc:5000/${destProject}/${appName}:${imageTag}"""
+    docker://docker-registry-default.master.ent-ocp1-np1-useast1.aws.internal.das/console/${srcProject}/${imageTag} \
+    docker://master.ent-ocp-np2.aws.internal.das/console/${destProject}/${imageTag}"""
 }
-
-
 
 
 pipeline {
@@ -37,8 +35,7 @@ pipeline {
 		      openshift.withProject() {
 		          skopeoToken = openshift.raw("sa get-token jenkins").out.trim()
 			  println(skopeoToken)
-		  }
-		  imageTag = getVersionFromPom()
+		  } 
 	      }
 	  }
 	}
