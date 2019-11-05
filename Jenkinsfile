@@ -41,7 +41,8 @@ pipeline {
 	       sh "mvn clean package"
 	  }
       }
-      stage("Copy Image to Test") { 
+      stage("Copy Image to Test") {
+          agent { label "agent-name" }
           steps {
 	      script {
 	          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
