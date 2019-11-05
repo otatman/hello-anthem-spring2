@@ -4,8 +4,9 @@ metadata:
 spec:
   strategy: 
     jenkinsPipelineStrategy:
-      jenkinsfilePath: ${PIPELINE_SCRIPT}
+            #jenkinsfilePath: ${PIPELINE_SCRIPT}
+      jenkinsfilePat: Jenkinsfile
     type: JenkinsPipeline
-parameters:
-- name: PIPELINE_SCRIPT
-  value: Jenkinsfile
+#parameters:
+#- name: PIPELINE_SCRIPT
+#  value: Jenkinsfile
