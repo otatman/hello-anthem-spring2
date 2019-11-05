@@ -33,12 +33,14 @@ pipeline {
       stage("Setup") {
 	  steps {
 	      script {
-		  openshift.withProject(devProject) {
-		      skopeoToken = openshift.raw("serviceaccounts get-token jenkins").out.trim()
-		  }
-		  imageTag = getVersionFromPom()
+	          openshift.withCluster() {
+		      openshift.withProject() {
+		          skopeoToken = openshift.raw("sa get-token jenkins").out.trim()
+			  println(skopeoToken)
+		  } 
 	      }
 	  }
+	}
       }
       stage("Build & Test") {
           steps {
