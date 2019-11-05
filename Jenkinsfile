@@ -48,7 +48,7 @@ pipeline {
 	  }
       }
       stage("Copy Image to Test") {
-          agent { label "jenkins-agent-skopeo" }
+          agent { label "jenkins-1-s88mh" }
           steps {
 	      script {
 	          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
