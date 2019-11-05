@@ -1,6 +1,6 @@
 def appName = "hello-anthem"
 def devProject = "hello-anthem-jenkins"
-def testProject = "hello-anthm-skpo-testapp"
+def testProject = "hello-anthem-skopeo-test"
 
 def skopeoToken
 def imageTag = "hello-anthem:latest"
