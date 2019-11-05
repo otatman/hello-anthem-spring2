@@ -5,7 +5,7 @@ def testProject = "hello-anthm-skpo-testapp"
 def skopeoToken
 def imageTag
 
-def getVersionromPom() {
+def getVersionFromPom() {
     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
     matcher ? matcher[0][1] : null
 }
@@ -37,7 +37,8 @@ pipeline {
 		      openshift.withProject() {
 		          skopeoToken = openshift.raw("sa get-token jenkins").out.trim()
 			  println(skopeoToken)
-		  } 
+		  }
+		  imageTag = getVersionFromPom()
 	      }
 	  }
 	}
