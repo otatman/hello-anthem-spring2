@@ -45,7 +45,6 @@ pipeline {
 	       sh "mvn clean package"
 	  }
       }
-   }
       stage("Copy Image to Test") {
           agent { label "jenkins-agent-skopeo" }
           steps {
