@@ -1,19 +1,9 @@
-kind: "BuildConfig"
 apiVersion: v1
+kind: BuildConfig
 metadata:
   name: hello-anthem-s2i-pipeline
-  #objects:
-  #- kind: BuildConfig
 spec:
-        #source:
-        #type: Git
-        #git:
-        #uri: https://github.com/otatman/hello-anthem-spring2.git
-  strategy: 
+  strategy:
     jenkinsPipelineStrategy:
-            #jenkinsfilePath: ${PIPELINE_SCRIPT}
       jenkinsfilePath: Jenkinsfile
     type: JenkinsPipeline
-#parameters:
-#- name: PIPELINE_SCRIPT
-#  value: Jenkinsfile
