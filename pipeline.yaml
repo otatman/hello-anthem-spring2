@@ -1,7 +1,13 @@
 apiVersion: v1
 metadata:
   name: hello-anthem-s2i-pipeline
-spec:
+objects:
+- kind: BuildConfig
+  spec:
+    source:
+      type: Git
+      git:
+        uri: https://github.com/otatman/hello-anthem-spring2.git
   strategy: 
     jenkinsPipelineStrategy:
             #jenkinsfilePath: ${PIPELINE_SCRIPT}
