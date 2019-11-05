@@ -7,12 +7,12 @@ def skopeoToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3Nl
 def imageTag = "hello-anthem:latest"
 
 
-//def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, def imageTag) {
-//    sh """skopeo copy --src-tls-verify=false --src-creds=jenkins:${skopeoToken} \
-//    --dest-tls-verify=false --dest-creds=jenkins:${skopeoToken} \
-//    docker://docker-registry-default.apps.ent-ocp-np1-useast1.aws.internal.das/${srcProject}:${imageTag} \
-//    docker://docker-registry-default.apps.ent-ocp-np2-useast1.aws.internal.das/${destProject}:${imageTag}"""
-//}
+def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, def imageTag) {
+    sh """skopeo copy --src-tls-verify=false --src-creds=jenkins:${skopeoToken} \
+    --dest-tls-verify=false --dest-creds=jenkins:${skopeoToken} \
+    docker://docker-registry-default.apps.ent-ocp-np1-useast1.aws.internal.das/${srcProject}:${imageTag} \
+    docker://docker-registry-default.apps.ent-ocp-np2-useast1.aws.internal.das/${destProject}:${imageTag}"""
+}
 
 
 pipeline {
@@ -30,12 +30,12 @@ pipeline {
 	       sh "mvn clean package"
 	  }
       }
-      //stage("Copy Image to Test") {
-      //    steps {
-	//      script {
-	//          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
-	 //     }
-	 // }
-      //}
+      stage("Copy Image to Test") {
+          steps {
+	      script {
+	          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
+	      }
+	  }
+      }
    }
 }
