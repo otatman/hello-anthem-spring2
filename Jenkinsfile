@@ -1,16 +1,12 @@
-def appName = "hello-anthem-jenkins"
+def appName = "hello-anthem"
 def devProject = "hello-anthem-jenkins"
 def testProject = "hello-anthm-skpo-testapp"
 
 def skopeoToken
 def imageTag = "hello-anthem:latest"
 
-def getVersionFromPom() {
-    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-    matcher ? matcher[0][1] : null
-}
 
-def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, defimageTag) {
+def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, def imageTag) {
     sh """skopeo copy --src-tls-verify=false --src-creds=jenkins:${skopeoToken} \
     --dest-tls-verify=false --dest-creds=jenkins:${skopeoToken} \
     docker://docker-registry-default.master.ent-ocp1-np1-useast1.aws.internal.das/console/${srcProject}/${imageTag} \
