@@ -42,7 +42,7 @@ pipeline {
 	  }
       }
       stage("Copy Image to Test") {
-          agent { label "agent-name" }
+          agent { label "skopeo-agent" }
           steps {
 	      script {
 	          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
