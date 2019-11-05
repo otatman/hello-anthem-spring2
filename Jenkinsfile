@@ -17,7 +17,7 @@ def skopeoCopy(def skopeoToken, def srcProject, def destProject, def appName, de
 pipeline {
   agent {
     node {
-      label 'maven' 
+      label 'skopeo-agent' 
     }
   }
   options {
@@ -42,7 +42,6 @@ pipeline {
 	  }
       }
       stage("Copy Image to Test") {
-          agent { label "skopeo-agent" }
           steps {
 	      script {
 	          skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
