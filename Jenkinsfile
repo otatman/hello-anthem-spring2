@@ -57,13 +57,13 @@ pipeline {
 	       sh "mvn clean package"
 	  }
       }
-      stage("Copy Image to Test") {
+      /*stage("Copy Image to Test") {
           steps {
 	      script {
 	          skopeoCopy(skopeoTokenSrc, skopeoTokenDest, devProject, testProject, appName, imageTag)
 		  echo "successfully copied image to test stage"
 	      }
 	  }
-      }
+      }*/
    }
 }
