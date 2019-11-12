@@ -45,7 +45,7 @@ pipeline {
 	      script {
 	      	  openshift.withCluster() {
 		      openshift.withProject() {
-		          skopeoTokenDest = openshift.raw("sa get-token jenkins-sa -n hello-anthem-skopeo-test").out.trim()
+		          skopeoTokenDest = openshift.raw("sa get-token jenkins-sa").out.trim()
 			  println(skopeoTokenDest)
 		  }
 	      }
